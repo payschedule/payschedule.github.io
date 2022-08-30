@@ -35,16 +35,9 @@ jobs:
         with:
           node-version: '14'
 
-      - name: Find and Replace http to https
-        uses: mad9000/actions-find-and-replace-string@2
-        with:
-          source: 'refs/heads/main'
-          find: 'http:/'        # we want to remove ref/heads/ from source 
-          replace: 'https:/'  
-
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.API_TOKEN_GITHUB }}
-          publish_dir: ./public
+          publish_dir: ./build
